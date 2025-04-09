@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { collection, onSnapshot, getDocs, deleteDoc, doc, updateDoc, query, where, arrayUnion, arrayRemove, Timestamp, deleteField } from "firebase/firestore"
+import { collection, onSnapshot, getDocs, deleteDoc, doc, updateDoc, query, where, Timestamp, deleteField } from "firebase/firestore"
 import { useAuth } from '@/hooks/useAuth'
 import { db } from "@/lib/firebase"
 import Image from "next/image"

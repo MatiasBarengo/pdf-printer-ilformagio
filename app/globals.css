@@ -1,0 +1,319 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+}
+
+@media print {
+  /* Ocultar elementos innecesarios al imprimir */
+  button, form, select, input {
+    display: none !important;
+  }
+
+  /* Estilos para el contenedor principal */
+  .container {
+    margin: 20px 0 0 !important;
+    padding: 0 20px 20px !important;
+    max-width: none !important;
+    page-break-before: always !important;
+  }
+
+  /* Estilos para el título */
+  h1 {
+    text-align: center !important;
+    font-size: 60px !important;
+    margin-bottom: 20px !important;
+    break-after: avoid !important;
+  }
+
+  /* Estilos para los encabezados de categoría */
+  .category-header {
+    display: block !important;
+    width: 100% !important;
+    font-size: 2rem !important;
+    margin: 0 0 30px 0 !important;
+    padding: 4px 0 !important;
+    text-align: center !important;
+    background: radial-gradient(circle at center, #ffffff, #fecaca) !important;
+    color: #2563eb !important;
+    font-weight: bold !important;
+    border-radius: 0px !important;
+  }
+
+  /* Estilos para la cuadrícula de productos */
+  .product-grid {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  /* Contenedor de productos dentro de cada categoría */
+  .category-products {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 20px !important;
+    width: 100% !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Estilos para las tarjetas de producto */
+  .product-card {
+    break-inside: avoid !important;
+    font-size: 0.8em !important;
+    padding: 10px !important;
+    width: 200px !important;
+    flex: 0 0 200px !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    border: 3px solid #ddd !important;
+    border-radius: 8px !important;
+    background: #ffffff !important;
+  }
+
+  /* Estilos para las imágenes de producto */
+  .product-image {
+    height: 140px !important;
+    object-fit: cover !important;
+  }
+
+  /* Estilos para el texto del producto */
+  .product-name {
+    font-size: 1.2em !important;
+    margin: 5px 0 !important;
+    font-weight: 500 !important;
+    text-align: center !important;
+    display: block !important;
+  }
+
+  /* Estilos para impresión */
+  .product-price {
+    font-size: 1.4em !important;
+    margin-top: 3px !important;
+    font-weight: 700 !important;
+    color: #2563eb !important;
+    padding: 4px 8px !important;
+    background: #f0f7ff !important;
+    border-radius: 4px !important;
+    display: block !important;
+    text-align: center !important;
+    width: fit-content !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Ocultar títulos específicos */
+  .catalog-title,
+  .add-product-title,
+  .products-title {
+    display: none !important;
+  }
+
+  /* Si el encabezado está en el elemento header */
+  header {
+    display: none !important;
+  }
+
+  /* O si tiene una clase específica */
+  .catalog-header {
+    display: none !important;
+  }
+
+  /* Configuración de página sin URLs */
+  @page {
+    margin: 0;
+    padding: 0;
+    margin-header: 0;
+    margin-footer: 0;
+    marks: none;
+  }
+
+  /* Crear espacio en cada página */
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 20px solid #fecaca;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* Ajustar el logo y título principal */
+  .container > *:first-child {
+    margin-top: 0 !important;
+  }
+
+  /* Ajustar los encabezados de categoría */
+  .category-header {
+    margin-top: 40px !important;
+  }
+
+  .category-header:first-of-type {
+    margin-top: 40px !important;
+  }
+
+  /* Asegurar que cada nueva sección comience con espacio adecuado */
+  .category-products {
+    break-before: avoid !important;
+  }
+
+  /* Número de página sin URL */
+  .container::after {
+    content: counter(page);
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 12px;
+  }
+
+  /* Forzar la impresión de colores */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  /* Mover todo el contenido hacia abajo */
+  .category-header,
+  .category-products,
+  h1 {
+    position: relative !important;
+    top: 40px !important;
+  }
+
+  /* Estilos específicos para el header en impresión */
+  .print-header {
+    display: grid !important;
+    width: 100% !important;
+    background: linear-gradient(to right, #fff7ed, #fee2e2, #fff7ed) !important;
+    padding: 2rem 1.5rem !important;
+    position: relative !important;
+  }
+
+  .print-header .grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    align-items: center !important;
+    gap: 1rem !important;
+  }
+
+  /* Mantener los bordes decorativos */
+  .print-header .h-2 {
+    display: block !important;
+    height: 0.5rem !important;
+    background: linear-gradient(to right, #2563eb, #ef4444, #2563eb) !important;
+  }
+
+  /* Ajustes para las imágenes laterales */
+  .print-header .md\:flex {
+    display: flex !important;
+    justify-content: space-between !important;
+    gap: 1rem !important;
+  }
+
+  /* Ajustes para el logo central y título */
+  .print-header .flex-col {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 1rem !important;
+  }
+
+  /* Asegurar que las imágenes se muestren */
+  .print-header img {
+    display: block !important;
+    width: auto !important;
+    height: auto !important;
+  }
+
+  /* Ajustar el título */
+  .print-header p {
+    font-size: 1.25rem !important;
+    color: #4b5563 !important;
+    font-weight: 600 !important;
+    font-style: italic !important;
+    margin-top: 1rem !important;
+  }
+}
+
+/* Estilos normales (no print) */
+.category-products {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+  margin-bottom: 30px;
+  justify-content: center;
+}
+
+.product-card {
+  width: 200px;
+  flex: 0 0 200px;
+  break-inside: avoid;
+  padding: 10px;
+  margin: 0;
+  border: 3px solid #ddd;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.category-header {
+  display: block;
+  width: 100%;
+  background: radial-gradient(circle at center, #ffffff, #fecaca);
+  padding: 4px 0;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2563eb;
+  margin: 30px 0 15px 0;
+  border-radius: 8px;
+}
+
+.category-header:first-of-type {
+  margin-top: 0;
+}
+
+/* Agregar estilos para nombre y precio del producto */
+.product-name {
+  font-size: 1.2rem;
+  margin: 5px 0;
+  font-weight: 500;
+  text-align: center;
+  display: block;
+}
+
+.product-price {
+  font-size: 1.4rem;
+  margin-top: 3px;
+  font-weight: 700;
+  color: #2563eb;
+  padding: 4px 8px;
+  background: #f0f7ff;
+  border-radius: 4px;
+  display: block;
+  text-align: center;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
